@@ -1,0 +1,946 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Roda Ceria Bahasa - BBM Digital Kemahiran Mendengar & Bertutur</title>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #E0F7FA;
+            --primary: #0288D1;
+            --primary-dark: #01579B;
+            --accent: #FF9800;
+            --accent-hover: #F57C00;
+            --green: #4CAF50;
+            --green-dark: #388E3C;
+            --yellow: #FFEB3B;
+            --red: #F44336;
+            --purple: #8E24AA;
+            --card-bg: #FFFFFF;
+            --text-dark: #263238;
+            --shadow: 0 8px 24px rgba(0,0,0,0.12);
+            --radius: 20px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Nunito', sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            background-image: radial-gradient(#B2EBF2 15%, transparent 16%), radial-gradient(#B2EBF2 15%, transparent 16%);
+            background-size: 60px 60px;
+            background-position: 0 0, 30px 30px;
+            color: var(--text-dark);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 15px;
+            overflow-x: hidden;
+        }
+
+        .top-nav {
+            width: 100%;
+            max-width: 1000px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .btn-icon {
+            background: white;
+            border: 3px solid #B2EBF2;
+            padding: 8px 16px;
+            border-radius: 50px;
+            font-weight: 700;
+            color: var(--primary-dark);
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.95rem;
+        }
+
+        .btn-icon:hover {
+            transform: translateY(-2px);
+            background: #E1F5FE;
+        }
+
+        .game-card {
+            background: var(--card-bg);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            width: 100%;
+            max-width: 1000px;
+            padding: 30px;
+            position: relative;
+            min-height: 580px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            border: 4px solid #B2EBF2;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Fredoka', cursive, sans-serif;
+            text-align: center;
+        }
+
+        .main-title {
+            color: var(--primary-dark);
+            font-size: 2.5rem;
+            text-shadow: 2px 2px 0px #E0F7FA;
+            margin-bottom: 5px;
+        }
+
+        .sub-title {
+            color: #546E7A;
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .tagline {
+            background: #FFF3E0;
+            color: #E65100;
+            padding: 6px 18px;
+            border-radius: 30px;
+            font-size: 0.95rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            border: 2px dashed #FFE0B2;
+            text-align: center;
+        }
+
+        .flow-container {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .flow-step {
+            background: #F1F8E9;
+            color: var(--green-dark);
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-weight: 700;
+            font-size: 0.85rem;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .page {
+            display: none;
+            width: 100%;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .page.active {
+            display: flex;
+        }
+
+        .wheel-container {
+            position: relative;
+            width: 360px;
+            height: 360px;
+            margin: 15px 0 25px 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .wheel-pointer {
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 0;
+            border-left: 18px solid transparent;
+            border-right: 18px solid transparent;
+            border-top: 36px solid var(--red);
+            z-index: 10;
+            filter: drop-shadow(0 4px 4px rgba(0,0,0,0.2));
+        }
+
+        canvas#wheelCanvas {
+            width: 360px;
+            height: 360px;
+            border-radius: 50%;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+            background-color: #FFFFFF;
+            display: block;
+        }
+
+        .btn-primary {
+            background: var(--accent);
+            color: white;
+            border: none;
+            padding: 14px 32px;
+            font-size: 1.3rem;
+            font-weight: 800;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 6px 0 var(--accent-hover), 0 10px 15px rgba(0,0,0,0.15);
+            transition: all 0.1s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .btn-primary:hover {
+            background: #FF8F00;
+        }
+
+        .btn-primary:active {
+            transform: translateY(4px);
+            box-shadow: 0 2px 0 var(--accent-hover), 0 5px 10px rgba(0,0,0,0.15);
+        }
+
+        .btn-secondary {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 4px 0 var(--primary-dark);
+            transition: all 0.1s ease;
+        }
+
+        .selection-box {
+            margin-top: 15px;
+            padding: 15px 25px;
+            background: #E8EAF6;
+            border-radius: 15px;
+            text-align: center;
+            border: 2px solid #C5CAE9;
+            display: none;
+            width: 100%;
+            max-width: 500px;
+        }
+
+        .sp-badge {
+            background: var(--purple);
+            color: white;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-weight: 700;
+            font-size: 0.95rem;
+            margin-bottom: 10px;
+        }
+
+        .progress-dots {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .dot {
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: #CFD8DC;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.6rem;
+            color: white;
+            font-weight: bold;
+        }
+
+        .dot.completed { background: var(--green); }
+        .dot.active { background: var(--accent); transform: scale(1.25); }
+
+        .audio-box {
+            background: #F0F4C3;
+            border: 3px dashed #AFB42B;
+            border-radius: var(--radius);
+            padding: 20px;
+            text-align: center;
+            width: 100%;
+            max-width: 700px;
+            margin: 15px 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .question-img {
+            max-width: 100%;
+            max-height: 240px;
+            border-radius: 12px;
+            object-fit: contain;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            background: #FFF;
+        }
+
+        .question-instruction {
+            font-size: 1.15rem;
+            font-weight: 800;
+            color: #1B5E20;
+            background: #DCEDC8;
+            padding: 12px 18px;
+            border-radius: 12px;
+            border: 2px solid #AED581;
+            width: 100%;
+            line-height: 1.4;
+            text-align: left;
+        }
+
+        .teacher-panel {
+            width: 100%;
+            max-width: 700px;
+            margin-top: 15px;
+            border: 2px solid #FFE0B2;
+            border-radius: 15px;
+            background: #FFF8E1;
+            overflow: hidden;
+        }
+
+        .teacher-header {
+            background: #FFE0B2;
+            padding: 10px 15px;
+            font-weight: 800;
+            color: #E65100;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .teacher-content {
+            padding: 15px;
+            display: none;
+            font-size: 0.95rem;
+            color: #424242;
+            text-align: left;
+        }
+
+        .teacher-content.show { display: block; }
+
+        .keywords {
+            display: flex;
+            gap: 6px;
+            flex-wrap: wrap;
+            margin-top: 8px;
+        }
+
+        .kw-tag {
+            background: #E1F5FE;
+            color: #0277BD;
+            padding: 3px 8px;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 0.8rem;
+        }
+
+        .eval-box {
+            margin-top: 20px;
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .btn-eval {
+            border: none;
+            padding: 10px 20px;
+            border-radius: 30px;
+            font-weight: 800;
+            cursor: pointer;
+            color: white;
+            font-size: 1rem;
+            box-shadow: 0 4px 0 rgba(0,0,0,0.2);
+        }
+
+        .btn-eval.correct { background: var(--green); }
+        .btn-eval.guidance { background: var(--accent); }
+        .btn-eval.retry { background: var(--red); }
+
+        .eval-feedback {
+            margin-top: 15px;
+            font-weight: 800;
+            font-size: 1.1rem;
+            min-height: 30px;
+            text-align: center;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 100;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: var(--radius);
+            padding: 25px;
+            max-width: 600px;
+            width: 100%;
+            max-height: 85vh;
+            overflow-y: auto;
+            position: relative;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 15px; right: 15px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            font-weight: 800;
+            color: #78909C;
+        }
+
+        .info-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+
+        .info-table td, .info-table th {
+            border: 1px solid #B0BEC5;
+            padding: 8px 12px;
+            text-align: left;
+            font-size: 0.9rem;
+        }
+
+        .info-table th { background: #ECEFF1; }
+
+        @media (max-width: 600px) {
+            .main-title { font-size: 1.8rem; }
+            .wheel-container { width: 280px; height: 280px; }
+            canvas#wheelCanvas { width: 280px; height: 280px; }
+            .game-card { padding: 15px; }
+            .btn-primary { font-size: 1.1rem; padding: 12px 24px; }
+        }
+    </style>
+</head>
+<body>
+
+    <audio id="audioQuestion"></audio>
+    <audio id="audioSpin" src="spin.mp3"></audio>
+    <audio id="audioDing" src="ding.mp3"></audio>
+    <audio id="audioCheer" src="cheer.mp3"></audio>
+    <audio id="audioClick" src="click.mp3"></audio>
+
+    <div class="top-nav">
+        <button class="btn-icon" onclick="playClickSound(); showModal('infoModal')">ℹ INFO GURU</button>
+        <button class="btn-icon" onclick="playClickSound(); goHome()">⌂ UTAMA</button>
+    </div>
+
+    <div class="game-card">
+
+        <div class="flow-container">
+            <div class="flow-step">🎧 DENGAR</div>
+            <div class="flow-step">🧠 FIKIR</div>
+            <div class="flow-step">🗣️ BERTUTUR</div>
+            <div class="flow-step">⭐ BERJAYA</div>
+        </div>
+
+        <!-- PAGE 1: UTAMA -->
+        <div id="pageHome" class="page active">
+            <h1 class="main-title">RODA CERIA BAHASA</h1>
+            <p class="sub-title">Cabaran Lisan Spontan & KBAT Kantin Sekolah</p>
+            
+            <div class="tagline">“Dengar dengan teliti, fikir dengan bijak, bertutur dengan yakin!”</div>
+
+            <div class="wheel-container">
+                <div class="wheel-pointer"></div>
+                <canvas id="wheelCanvas" width="360" height="360"></canvas>
+            </div>
+
+            <button id="spinBtn" class="btn-primary" onclick="playClickSound(); spinWheel()">🎡 PUTAR RODA</button>
+
+            <div id="spinResultBox" class="selection-box">
+                <p style="font-weight: 700; color: #3F51B5; margin-bottom: 5px;">CABARAN ANDA ADALAH...</p>
+                <h3 id="selectedSpTitle" style="color: var(--primary-dark); margin-bottom: 10px;">-</h3>
+                <button class="btn-secondary" onclick="playClickSound(); startSpChallenge()">MULA CABARAN ➔</button>
+            </div>
+        </div>
+
+        <!-- PAGE 2: SOALAN -->
+        <div id="pageQuestion" class="page">
+            <div id="spBadge" class="sp-badge">SOALAN 1</div>
+            
+            <div class="progress-dots" id="progressDots">
+                <div class="dot">1</div><div class="dot">2</div><div class="dot">3</div><div class="dot">4</div><div class="dot">5</div>
+                <div class="dot">6</div><div class="dot">7</div><div class="dot">8</div><div class="dot">9</div><div class="dot">10</div>
+            </div>
+
+            <div class="audio-box">
+                <img id="questionImage" class="question-img" src="" alt="Gambar Soalan">
+                
+                <div id="questionInstruction" class="question-instruction">
+                    BERDASARKAN AUDIO: Arahan soalan...
+                </div>
+
+                <div style="display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; margin-top: 10px;">
+                    <button class="btn-primary" onclick="playClickSound(); playQuestionAudio()" style="font-size: 1rem; padding: 10px 20px;">
+                        ▶ DENGAR SOALAN
+                    </button>
+                    <button class="btn-secondary" onclick="playClickSound(); playQuestionAudio()" style="font-size: 1rem; padding: 10px 20px; background: #78909C;">
+                        ↻ ULANG AUDIO
+                    </button>
+                </div>
+            </div>
+
+            <p style="font-weight: 700; color: #546E7A; margin: 10px 0;">Sila minta murid menjawab secara lisan kepada guru.</p>
+
+            <div class="teacher-panel">
+                <div class="teacher-header" onclick="playClickSound(); toggleTeacherPanel()">
+                    <span>🔐 PANDUAN GURU (Klik untuk buka/tutup)</span>
+                    <span id="panelArrow">▼</span>
+                </div>
+                <div class="teacher-content" id="teacherContent">
+                    <p><strong>Teks Audio / Situasi Soalan:</strong></p>
+                    <p id="tAudioText" style="margin-bottom: 8px; font-style: italic; background: #FFF; padding: 6px; border-radius: 6px; white-space: pre-line;">-</p>
+                    
+                    <p><strong>Rangka Jawapan Guru:</strong></p>
+                    <p id="tAnswer" style="margin-bottom: 8px; color: var(--green-dark); font-weight: 700; white-space: pre-line;">-</p>
+                    
+                    <p><strong>Kata Kunci Jawapan:</strong></p>
+                    <div class="keywords" id="tKeywords"></div>
+                </div>
+            </div>
+
+            <div class="eval-box">
+                <button class="btn-eval correct" onclick="playClickSound(); evaluateAnswer('correct')">✓ BETUL</button>
+                <button class="btn-eval guidance" onclick="playClickSound(); evaluateAnswer('guidance')">~ PERLU BIMBINGAN</button>
+                <button class="btn-eval retry" onclick="playClickSound(); evaluateAnswer('retry')">↻ CUBA LAGI</button>
+            </div>
+
+            <div class="eval-feedback" id="evalFeedback"></div>
+
+            <button id="nextBtn" class="btn-secondary" style="display: none; margin-top: 15px;" onclick="playClickSound(); nextQuestion()">
+                KEMBALI KE RODA ➔
+            </button>
+        </div>
+
+        <!-- PAGE 3: TAMAT -->
+        <div id="pageComplete" class="page">
+            <h1 class="main-title" style="color: var(--green);">TAHNIAH! 🎉</h1>
+            <p class="sub-title">Semua 10 soalan Roda Ceria Bahasa telah selesai dijawab!</p>
+
+            <p style="text-align: center; max-width: 600px; font-size: 1.1rem; margin: 20px 0; line-height: 1.5;">
+                Syabas! Kamu telah menunjukkan kemahiran bertutur secara kritis, santun, dan bernas dalam menjaga kebersihan serta kesihatan di kantin sekolah.
+            </p>
+
+            <div style="display: flex; gap: 15px; flex-wrap: wrap;">
+                <button class="btn-primary" onclick="playClickSound(); restartGame()">🔄 MAIN SEMULA</button>
+                <button class="btn-secondary" onclick="playClickSound(); goHome()">🎡 KEMBALI KE RODA</button>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- INFO GURU MODAL -->
+    <div id="infoModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="playClickSound(); closeModal('infoModal')">&times;</span>
+            <h2 style="color: var(--primary-dark); margin-bottom: 10px;">ℹ INFO GURU</h2>
+            <table class="info-table">
+                <tr><th>NAMA BBM</th><td>Roda Ceria Bahasa (10 Soalan)</td></tr>
+                <tr><th>FOKUS</th><td>Kemahiran Mendengar dan Bertutur (KBAT & Kritis)</td></tr>
+                <tr><th>SASARAN</th><td>Murid Sekolah Rendah</td></tr>
+                <tr><th>TEMA</th><td>Kebersihan dan Kesihatan Kantin Sekolah</td></tr>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        function playClickSound() {
+            try {
+                const clickAudio = document.getElementById('audioClick');
+                if (clickAudio && clickAudio.currentTime !== undefined) {
+                    clickAudio.currentTime = 0;
+                    clickAudio.play().catch(e => {});
+                }
+            } catch(e) {}
+        }
+
+        // Senarai 10 Soalan Baharu (Aras Kritis & KBAT)
+        const questionsList = [
+            { 
+                id: 1, 
+                title: "Soalan 1: Keselamatan Makanan Terdedah", 
+                audioFile: "soalan1.mp3", 
+                imageFile: "gambar1.jpg", 
+                instruction: "Berdasarkan panduan kebersihan dalam e-Buku, kamu melihat penjual kantin membiarkan kuih-muih terdedah tanpa penutup. Apakah respons lisan yang santun dan bernas untuk kamu sampaikan kepada penjual tersebut?", 
+                audioText: "Situasi: Penjual kantin membiarkan kuih-muih terdedah tanpa penutup di atas meja jualan.", 
+                answer: "Mak cik/Pak cik, maafkan saya. Makanan ini elok ditutup rapat supaya tidak dihinggapi lalat dan kuman demi menjaga kesihatan murid-murid.", 
+                keywords: ["maafkan saya", "ditutup rapat", "lalat dan kuman", "kesihatan murid"] 
+            },
+            { 
+                id: 2, 
+                title: "Soalan 2: Pengurusan Sisa Makanan & Longkang", 
+                audioFile: "soalan2.mp3", 
+                imageFile: "gambar2.jpg", 
+                instruction: "Mengapakah amalan membuang sisa makanan ke dalam singki atau longkang kantin dianggap membahayakan kesihatan awam di sekolah?", 
+                audioText: "Soalan KBAT: Impak membuang sisa makanan ke dalam singki atau longkang kantin.", 
+                answer: "Kerana sisa makanan membiakkan lalat dan tikus, menyebabkan saluran tersumbat serta mengeluarkan bau busuk yang membawa penyakit.", 
+                keywords: ["membiakkan lalat/tikus", "saluran tersumbat", "bau busuk", "penyakit"] 
+            },
+            { 
+                id: 3, 
+                title: "Soalan 3: Nutrisi & Pemilihan Makanan Berkhasiat", 
+                audioFile: "soalan3.mp3", 
+                imageFile: "gambar3.jpg", 
+                instruction: "Dalam e-Buku, kita mempelajari tentang Pemakanan Sihat. Jika rakan kamu mahu membeli minuman manis bergas setiap hari di kantin, bagaimanakah kamu mentafsir risikonya dan menasihatinya secara sopan?", 
+                audioText: "Situasi: Rakan ingin membeli minuman manis bergas setiap hari di kantin sekolah.", 
+                answer: "Saya akan beritahu rakan dengan mesra bahawa minuman manis boleh menyebabkan kerosakan gigi serta obesiti, lalu mengajak dia memilih air masak atau jus buah segar.", 
+                keywords: ["kerosakan gigi", "obesiti", "air masak", "jus buah segar"] 
+            },
+            { 
+                id: 4, 
+                title: "Soalan 4: Kebersihan Peralatan Makan", 
+                audioFile: "soalan4.mp3", 
+                imageFile: "gambar4.jpg", 
+                instruction: "Sekiranya kamu mendapati mangkuk mi yang diberikan oleh penjual kantin masih berminyak dan kotor, apakah tindakan serta respons lisan yang patut kamu ambil?", 
+                audioText: "Situasi: Mangkuk mi yang diterima daripada penjual kantin masih berminyak dan kotor.", 
+                answer: "Saya akan memulangkan mangkuk itu secara berhemah sambil berkata: 'Maaf mak cik, mangkuk ini agak kotor. Bolehkah tukarkan dengan mangkuk yang bersih?'", 
+                keywords: ["memulangkan secara berhemah", "maaf mak cik", "tukarkan mangkuk bersih"] 
+            },
+            { 
+                id: 5, 
+                title: "Soalan 5: Etika Beratur & Keselamatan Cecair Panas", 
+                audioFile: "soalan5.mp3", 
+                imageFile: "gambar5.jpg", 
+                instruction: "Mengapakah tindakan berlari-lari sambil membawa makanan atau sup panas di kantin sekolah sangat berbahaya dari sudut keselamatan dan kebersihan?", 
+                audioText: "Soalan KBAT: Bahaya berlari sambil membawa makanan atau sup panas di kantin.", 
+                answer: "Tindakan itu boleh menyebabkan makanan panas tumpah, melecurkan kulit rakan, dan mengotorkan lantai kantin sehingga licin.", 
+                keywords: ["makanan tumpah", "melecurkan kulit", "mengotorkan lantai", "licin"] 
+            },
+            { 
+                id: 6, 
+                title: "Soalan 6: Integriti Kebersihan Meja Makan", 
+                audioFile: "soalan6.mp3", 
+                imageFile: "gambar6.jpg", 
+                instruction: "Selepas selesai makan di kantin, kamu mendapati terdapat sisa kuah yang tumpah di atas meja. Mengapakah kamu bertanggungjawab mengelapnya walaupun itu bukan tumpahan kamu?", 
+                audioText: "Situasi: Terdapat sisa kuah tumpah di atas meja kantin yang bukan disebabkan oleh kamu.", 
+                answer: "Kerana menjaga kebersihan kantin ialah tanggungjawab bersama supaya meja sentiasa bersih, selesa, dan bebas kuman untuk pengguna seterusnya.", 
+                keywords: ["tanggungjawab bersama", "bersih dan selesa", "bebas kuman"] 
+            },
+            { 
+                id: 7, 
+                title: "Soalan 7: Penyemakan Tarikh Luput Makanan", 
+                audioFile: "soalan7.mp3", 
+                imageFile: "gambar7.jpg", 
+                instruction: "Mengapakah e-Buku menekankan supaya murid sentiasa menyemak tarikh luput pada pembungkus makanan di kantin sebelum memakannya?", 
+                audioText: "Soalan KBAT: Kepentingan menyemak tarikh luput pembungkus makanan.", 
+                answer: "Untuk memastikan makanan itu masih segar dan selamat dimakan supaya kita tidak terkena keracunan makanan.", 
+                keywords: ["makanan segar", "selamat dimakan", "elak keracunan makanan"] 
+            },
+            { 
+                id: 8, 
+                title: "Soalan 8: Kebersihan Tangan Sebelum & Selepas Makan", 
+                audioFile: "soalan8.mp3", 
+                imageFile: "gambar8.jpg", 
+                instruction: "Mengapakah mencuci tangan menggunakan sabun di singki kantin lebih berkesan berbanding hanya mengelap tangan dengan tisu sebelum makan?", 
+                audioText: "Soalan KBAT: Kelebihan cuci tangan dengan sabun berbanding mengelap dengan tisu.", 
+                answer: "Mencuci tangan dengan sabun dan air mengalir dapat membunuh kuman dan membuang minyak pada tangan secara berkesan.", 
+                keywords: ["sabun & air mengalir", "membunuh kuman", "membuang minyak"] 
+            },
+            { 
+                id: 9, 
+                title: "Soalan 9: Pengurangan Penggunaan Plastik Sekali Guna", 
+                audioFile: "soalan9.mp3", 
+                imageFile: "gambar9.jpg", 
+                instruction: "Bagaimanakah amalan membawa bekas makanan sendiri dari rumah dapat menyokong kempen Kebersihan dan Kesihatan Kantin Sekolah?", 
+                audioText: "Soalan KBAT: Kebaikan membawa bekas makanan sendiri ke kantin sekolah.", 
+                answer: "Membawa bekas sendiri mengurangkan sampah plastik di kantin dan memastikan kebersihan makanan lebih terjamin.", 
+                keywords: ["mengurangkan sampah plastik", "kebersihan makanan terjamin"] 
+            },
+            { 
+                id: 10, 
+                title: "Soalan 10: Peranan Murid Sebagai 'Duta Kebersihan'", 
+                audioFile: "soalan10.mp3", 
+                imageFile: "gambar10.jpg", 
+                instruction: "Sekiranya kamu dilantik sebagai Pengawas Kantin, apakah cadangan lisan yang paling kritis untuk memastikan semua murid menjaga kebersihan kawasan kantin?", 
+                audioText: "Situasi KBAT: Cadangan anda sebagai Pengawas Kantin untuk kebersihan.", 
+                answer: "Saya mencadangkan pembudayaan amalan 'Susun Pinggan dan Buang Sisa' secara kendiri serta penyediaan tong sampah mengikut kategori sisa.", 
+                keywords: ["Susun Pinggan dan Buang Sisa", "kategori sisa", "amalan kendiri"] 
+            }
+        ];
+
+        let selectedQuestionIndex = null;
+        let completedQuestions = new Array(10).fill(false);
+
+        /* SEKTOR RODA (10 SOALAN) */
+        const sectors = [
+            { color: "#F44336", label: "S1", index: 0 },
+            { color: "#E91E63", label: "S2", index: 1 },
+            { color: "#9C27B0", label: "S3", index: 2 },
+            { color: "#673AB7", label: "S4", index: 3 },
+            { color: "#3F51B5", label: "S5", index: 4 },
+            { color: "#2196F3", label: "S6", index: 5 },
+            { color: "#00BCD4", label: "S7", index: 6 },
+            { color: "#009688", label: "S8", index: 7 },
+            { color: "#4CAF50", label: "S9", index: 8 },
+            { color: "#FF9800", label: "S10", index: 9 }
+        ];
+
+        let startAngle = 0;
+        const arc = (2 * Math.PI) / sectors.length;
+        let isSpinning = false;
+
+        function drawWheel() {
+            const canvas = document.getElementById("wheelCanvas");
+            if (!canvas) return;
+            const ctx = canvas.getContext("2d");
+            if (!ctx) return;
+
+            const width = 360;
+            const center = width / 2;
+            const radius = center - 10;
+
+            ctx.clearRect(0, 0, width, width);
+
+            for (let i = 0; i < sectors.length; i++) {
+                const angle = startAngle + i * arc;
+                ctx.fillStyle = completedQuestions[i] ? "#9E9E9E" : sectors[i].color;
+                ctx.beginPath();
+                ctx.arc(center, center, radius, angle, angle + arc, false);
+                ctx.lineTo(center, center);
+                ctx.fill();
+
+                ctx.strokeStyle = "#FFFFFF";
+                ctx.lineWidth = 3;
+                ctx.stroke();
+
+                ctx.save();
+                ctx.fillStyle = "#FFFFFF";
+                ctx.font = "bold 16px Arial, sans-serif";
+                ctx.translate(center + Math.cos(angle + arc / 2) * (radius * 0.7), center + Math.sin(angle + arc / 2) * (radius * 0.7));
+                ctx.rotate(angle + arc / 2 + Math.PI / 2);
+                const text = sectors[i].label;
+                ctx.fillText(text, -ctx.measureText(text).width / 2, 0);
+                ctx.restore();
+            }
+
+            // Pusat Roda
+            ctx.beginPath();
+            ctx.arc(center, center, 25, 0, 2 * Math.PI);
+            ctx.fillStyle = "#FFFFFF";
+            ctx.fill();
+            ctx.strokeStyle = "#B2EBF2";
+            ctx.lineWidth = 5;
+            ctx.stroke();
+        }
+
+        function initWheel() {
+            drawWheel();
+            setTimeout(drawWheel, 100);
+            setTimeout(drawWheel, 500);
+        }
+
+        if (document.readyState === 'complete' || document.readyState === 'interactive') {
+            initWheel();
+        } else {
+            document.addEventListener('DOMContentLoaded', initWheel);
+        }
+
+        function spinWheel() {
+            if (isSpinning) return;
+
+            // Semak jika semua soalan telah selesai
+            if (completedQuestions.every(status => status === true)) {
+                showPage('pageComplete');
+                return;
+            }
+
+            isSpinning = true;
+            document.getElementById('spinBtn').disabled = true;
+            document.getElementById('spinResultBox').style.display = 'none';
+
+            try {
+                const audioSpin = document.getElementById('audioSpin');
+                if (audioSpin) { audioSpin.currentTime = 0; audioSpin.play().catch(e => {}); }
+            } catch(e) {}
+
+            let spinTime = 0;
+            let spinTimeTotal = Math.random() * 1000 + 3000; 
+            let spinAngleStart = Math.random() * 20 + 30;   
+
+            function rotateWheel() {
+                spinTime += 20;
+                if (spinTime >= spinTimeTotal) {
+                    stopRotateWheel();
+                    return;
+                }
+                let progress = spinTime / spinTimeTotal;
+                let easeOutFactor = 1 - Math.pow(1 - progress, 3);
+                let currentSpeed = spinAngleStart * (1 - easeOutFactor);
+                
+                startAngle += (currentSpeed * Math.PI / 180);
+                drawWheel();
+                setTimeout(rotateWheel, 20);
+            }
+            rotateWheel();
+        }
+
+        function stopRotateWheel() {
+            isSpinning = false;
+            document.getElementById('spinBtn').disabled = false;
+
+            try {
+                const audioSpin = document.getElementById('audioSpin');
+                if(audioSpin) audioSpin.pause();
+                const audioDing = document.getElementById('audioDing');
+                if(audioDing) { audioDing.currentTime = 0; audioDing.play().catch(e => {}); }
+            } catch(e) {}
+
+            const degrees = (startAngle * 180 / Math.PI) % 360;
+            const arcd = (arc * 180 / Math.PI);
+            
+            let index = Math.floor((360 - (degrees % 360) + 270) % 360 / arcd);
+            index = index % sectors.length;
+
+            selectedQuestionIndex = index;
+
+            // Jika soalan ini dah siap, pilih soalan terdekat yang belum siap
+            if (completedQuestions[selectedQuestionIndex]) {
+                selectedQuestionIndex = completedQuestions.findIndex(status => status === false);
+            }
+
+            const q = questionsList[selectedQuestionIndex];
+            document.getElementById('selectedSpTitle').innerText = q.title;
+            document.getElementById('spinResultBox').style.display = 'block';
+        }
+
+        function startSpChallenge() {
+            if (selectedQuestionIndex === null) return;
+            showPage('pageQuestion');
+            loadQuestion();
+        }
+
+        function loadQuestion() {
+            const q = questionsList[selectedQuestionIndex];
+            
+            document.getElementById('spBadge').innerText = `SOALAN ${q.id}`;
+            document.getElementById('questionImage').src = q.imageFile;
+            document.getElementById('questionInstruction').innerText = q.instruction;
+
+            // Kemaskini Progress Dots (1-10)
+            const dots = document.querySelectorAll('#progressDots .dot');
+            dots.forEach((dot, idx) => {
+                dot.className = 'dot';
+                dot.innerText = idx + 1;
+                if (completedQuestions[idx]) dot.classList.add('completed');
+                if (idx === selectedQuestionIndex) dot.classList.add('active');
+            });
+
+            document.getElementById('tAudioText').innerText = q.audioText;
+            document.getElementById('tAnswer').innerText = q.answer;
+            
+            const kwContainer = document.getElementById('tKeywords');
+            kwContainer.innerHTML = '';
+            q.keywords.forEach(kw => {
+                const tag = document.createElement('span');
+                tag.className = 'kw-tag';
+                tag.innerText = kw;
+                kwContainer.appendChild(tag);
+            });
+
+            document.getElementById('evalFeedback').innerText = '';
+            document.getElementById('nextBtn').style.display = 'none';
+            document.getElementById('teacherContent').classList.remove('show');
+        }
+
+        function playQuestionAudio() {
+            const q = questionsList[selectedQuestionIndex];
+            if (!q) return;
+
+            const player = document.getElementById('audioQuestion');
+            player.src = q.audioFile;
+            player.play().catch(e => {
+                alert("Fail audio (" + q.audioFile + ") belum ada / tidak dijumpai.");
+            });
+        }
+
+        function toggleTeacherPanel() {
+            const content = document.getElementById('teacherContent');
+            content.classList.toggle('show');
+        }
+
+        function evaluateAnswer(type) {
+            const feedbackEl = document.getElementById('evalFeedback');
+            if (type === 'correct') {
+                feedbackEl.style.color = "var(--green)";
+                feedbackEl.innerText = "Syabas! Jawapan murid sesuai, kritis, dan tepat.";
+                document.getElementById('nextBtn').style.display = 'inline-block';
+                
+                // Tandakan soalan ini telah selesai
+                completedQuestions[selectedQuestionIndex] = true;
+
+                try {
+                    const audioCheer = document.getElementById('audioCheer');
+                    if(audioCheer) { audioCheer.currentTime = 0; audioCheer.play().catch(e => {}); }
+                } catch(e) {}
+            } else if (type === 'guidance') {
+                feedbackEl.style.color = "var(--accent-hover)";
+                feedbackEl.innerText = "Bagus! Bimbing murid untuk memberikan hujah dan jawapan yang lebih bernas.";
+            } else if (type === 'retry') {
+                feedbackEl.style.color = "var(--red)";
+                feedbackEl.innerText = "Sila berikan peluang kepada murid untuk mencuba lagi.";
+                playQuestionAudio();
+            }
+        }
+
+        function nextQuestion() {
+            if (completedQuestions.every(status => status === true)) {
+                showPage('pageComplete');
+            } else {
+                goHome();
+            }
+        }
+
+        function showPage(pageId) {
+            document.querySelectorAll('.page').forEach(page => page.classList.remove('active'));
+            document.getElementById(pageId).classList.add('active');
+            if (pageId === 'pageHome') {
+                setTimeout(drawWheel, 50);
+            }
+        }
+
+        function goHome() {
+            showPage('pageHome');
+            document.getElementById('spinResultBox').style.display = 'none';
+        }
+
+        function restartGame() {
+            completedQuestions = new Array(10).fill(false);
+            selectedQuestionIndex = null;
+            goHome();
+        }
+
+        function showModal(id) { document.getElementById(id).style.display = 'flex'; }
+        function closeModal(id) { document.getElementById(id).style.display = 'none'; }
+    </script>
+</body>
+</html>
