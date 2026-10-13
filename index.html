@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Roda Ceria Bahasa - BBM Digital Kemahiran Mendengar & Bertutur</title>
+    <title>Roda Ceria Bahasa - BBM Digital SP 1.1.3</title>
     <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -466,9 +466,9 @@
         <!-- PAGE 1: UTAMA -->
         <div id="pageHome" class="page active">
             <h1 class="main-title">RODA CERIA BAHASA</h1>
-            <p class="sub-title">Cabaran Lisan Spontan & KBAT Kantin Sekolah</p>
+            <p class="sub-title">Cabaran Lisan Spontan SP 1.1.3 (Tahun 4)</p>
             
-            <div class="tagline">“Dengar dengan teliti, fikir dengan bijak, bertutur dengan yakin!”</div>
+            <div class="tagline">“Dengar dengan teliti, fikir secara kritis, bertutur dengan bernas!”</div>
 
             <div class="wheel-container">
                 <div class="wheel-pointer"></div>
@@ -486,7 +486,7 @@
 
         <!-- PAGE 2: SOALAN -->
         <div id="pageQuestion" class="page">
-            <div id="spBadge" class="sp-badge">SOALAN 1</div>
+            <div id="spBadge" class="sp-badge">SP 1.1.3 - SOALAN 1</div>
             
             <div class="progress-dots" id="progressDots">
                 <div class="dot">1</div><div class="dot">2</div><div class="dot">3</div><div class="dot">4</div><div class="dot">5</div>
@@ -510,7 +510,7 @@
                 </div>
             </div>
 
-            <p style="font-weight: 700; color: #546E7A; margin: 10px 0;">Sila minta murid menjawab secara lisan kepada guru.</p>
+            <p style="font-weight: 700; color: #546E7A; margin: 10px 0;">Sila minta murid menjawab secara lisan (kritis & bernas) kepada guru.</p>
 
             <div class="teacher-panel">
                 <div class="teacher-header" onclick="playClickSound(); toggleTeacherPanel()">
@@ -518,7 +518,7 @@
                     <span id="panelArrow">▼</span>
                 </div>
                 <div class="teacher-content" id="teacherContent">
-                    <p><strong>Teks Audio / Situasi Soalan:</strong></p>
+                    <p><strong>Fokus SP 1.1.3 & Situasi Soalan:</strong></p>
                     <p id="tAudioText" style="margin-bottom: 8px; font-style: italic; background: #FFF; padding: 6px; border-radius: 6px; white-space: pre-line;">-</p>
                     
                     <p><strong>Rangka Jawapan Guru:</strong></p>
@@ -530,7 +530,7 @@
             </div>
 
             <div class="eval-box">
-                <button class="btn-eval correct" onclick="playClickSound(); evaluateAnswer('correct')">✓ BETUL</button>
+                <button class="btn-eval correct" onclick="playClickSound(); evaluateAnswer('correct')">✓ BETUL & BERNAS</button>
                 <button class="btn-eval guidance" onclick="playClickSound(); evaluateAnswer('guidance')">~ PERLU BIMBINGAN</button>
                 <button class="btn-eval retry" onclick="playClickSound(); evaluateAnswer('retry')">↻ CUBA LAGI</button>
             </div>
@@ -565,9 +565,9 @@
             <span class="close-modal" onclick="playClickSound(); closeModal('infoModal')">&times;</span>
             <h2 style="color: var(--primary-dark); margin-bottom: 10px;">ℹ INFO GURU</h2>
             <table class="info-table">
-                <tr><th>NAMA BBM</th><td>Roda Ceria Bahasa (10 Soalan)</td></tr>
-                <tr><th>FOKUS</th><td>Kemahiran Mendengar dan Bertutur (KBAT & Kritis)</td></tr>
-                <tr><th>SASARAN</th><td>Murid Sekolah Rendah</td></tr>
+                <tr><th>NAMA BBM</th><td>Roda Ceria Bahasa (Tahun 4)</td></tr>
+                <tr><th>STANDARD PEMBELAJARAN</th><td>SP 1.1.3 (Mendengar, memahami dan memberikan respons terhadap soalan secara kritis dan bernas)</td></tr>
+                <tr><th>SASARAN</th><td>Murid Tahun 4</td></tr>
                 <tr><th>TEMA</th><td>Kebersihan dan Kesihatan Kantin Sekolah</td></tr>
             </table>
         </div>
@@ -584,107 +584,107 @@
             } catch(e) {}
         }
 
-        // Senarai 10 Soalan Baharu (Aras Kritis & KBAT)
+        // Senarai 10 Soalan SP 1.1.3 (Disesuaikan Sepenuhnya Mengikut Teks Pengguna)
         const questionsList = [
             { 
                 id: 1, 
-                title: "Soalan 1: Keselamatan Makanan Terdedah", 
+                title: "Soalan 1: Makanan Terdedah", 
                 audioFile: "soalan1.mp3", 
                 imageFile: "gambar1.jpg", 
-                instruction: "Berdasarkan panduan kebersihan dalam e-Buku, kamu melihat penjual kantin membiarkan kuih-muih terdedah tanpa penutup. Apakah respons lisan yang santun dan bernas untuk kamu sampaikan kepada penjual tersebut?", 
-                audioText: "Situasi: Penjual kantin membiarkan kuih-muih terdedah tanpa penutup di atas meja jualan.", 
-                answer: "Mak cik/Pak cik, maafkan saya. Makanan ini elok ditutup rapat supaya tidak dihinggapi lalat dan kuman demi menjaga kesihatan murid-murid.", 
-                keywords: ["maafkan saya", "ditutup rapat", "lalat dan kuman", "kesihatan murid"] 
+                instruction: "Mengapakah makanan yang dibiarkan terdedah di kantin berbahaya? Bagaimanakah kamu menasihati penjual tersebut?", 
+                audioText: "Situasi SP 1.1.3: Penjual biarkan makanan terdedah tanpa penutup di kantin.", 
+                answer: "Makanan terdedah mudah dihinggapi lalat yang membawa kuman dan boleh menyebabkan keracunan makanan. Saya akan berkata, “Mak cik, elok makanan ini ditutup supaya tidak dihinggapi lalat dan selamat dimakan.”", 
+                keywords: ["makanan terdedah", "dihinggapi lalat", "keracunan makanan", "ditutup rapat"] 
             },
             { 
                 id: 2, 
-                title: "Soalan 2: Pengurusan Sisa Makanan & Longkang", 
+                title: "Soalan 2: Kebersihan Tangan", 
                 audioFile: "soalan2.mp3", 
                 imageFile: "gambar2.jpg", 
-                instruction: "Mengapakah amalan membuang sisa makanan ke dalam singki atau longkang kantin dianggap membahayakan kesihatan awam di sekolah?", 
-                audioText: "Soalan KBAT: Impak membuang sisa makanan ke dalam singki atau longkang kantin.", 
-                answer: "Kerana sisa makanan membiakkan lalat dan tikus, menyebabkan saluran tersumbat serta mengeluarkan bau busuk yang membawa penyakit.", 
-                keywords: ["membiakkan lalat/tikus", "saluran tersumbat", "bau busuk", "penyakit"] 
+                instruction: "Rakan kamu hendak makan selepas bermain di padang tanpa membasuh tangan. Apakah kesannya dan apakah nasihat kamu?", 
+                audioText: "Situasi SP 1.1.3: Rakan mahu makan terus selepas bermain di padang tanpa basuh tangan.", 
+                answer: "Tangan yang kotor boleh memindahkan kuman kepada makanan dan menyebabkan penyakit. Saya akan berkata, “Kawan, marilah kita membasuh tangan dengan sabun sebelum makan supaya kesihatan kita terjaga.”", 
+                keywords: ["tangan kotor", "pindah kuman", "basuh dengan sabun", "jaga kesihatan"] 
             },
             { 
                 id: 3, 
-                title: "Soalan 3: Nutrisi & Pemilihan Makanan Berkhasiat", 
+                title: "Soalan 3: Pemilihan Makanan Sihat", 
                 audioFile: "soalan3.mp3", 
                 imageFile: "gambar3.jpg", 
-                instruction: "Dalam e-Buku, kita mempelajari tentang Pemakanan Sihat. Jika rakan kamu mahu membeli minuman manis bergas setiap hari di kantin, bagaimanakah kamu mentafsir risikonya dan menasihatinya secara sopan?", 
-                audioText: "Situasi: Rakan ingin membeli minuman manis bergas setiap hari di kantin sekolah.", 
-                answer: "Saya akan beritahu rakan dengan mesra bahawa minuman manis boleh menyebabkan kerosakan gigi serta obesiti, lalu mengajak dia memilih air masak atau jus buah segar.", 
-                keywords: ["kerosakan gigi", "obesiti", "air masak", "jus buah segar"] 
+                instruction: "Rakan kamu sering memilih makanan berminyak dan minuman manis. Adakah pilihan itu baik untuk kesihatannya? Berikan alasan kamu.", 
+                audioText: "Situasi SP 1.1.3: Rakan gemar membeli makanan berminyak dan minuman manis di kantin.", 
+                answer: "Pengambilan makanan berminyak dan minuman manis secara berlebihan boleh meningkatkan risiko obesiti dan kerosakan gigi. Saya mencadangkan supaya rakan saya memilih makanan seimbang dan minum air kosong untuk menjaga kesihatan.", 
+                keywords: ["makanan berminyak", "minuman manis", "obesiti", "kerosakan gigi", "makanan seimbang"] 
             },
             { 
                 id: 4, 
-                title: "Soalan 4: Kebersihan Peralatan Makan", 
+                title: "Soalan 4: Bersin di Hadapan Makanan", 
                 audioFile: "soalan4.mp3", 
                 imageFile: "gambar4.jpg", 
-                instruction: "Sekiranya kamu mendapati mangkuk mi yang diberikan oleh penjual kantin masih berminyak dan kotor, apakah tindakan serta respons lisan yang patut kamu ambil?", 
-                audioText: "Situasi: Mangkuk mi yang diterima daripada penjual kantin masih berminyak dan kotor.", 
-                answer: "Saya akan memulangkan mangkuk itu secara berhemah sambil berkata: 'Maaf mak cik, mangkuk ini agak kotor. Bolehkah tukarkan dengan mangkuk yang bersih?'", 
-                keywords: ["memulangkan secara berhemah", "maaf mak cik", "tukarkan mangkuk bersih"] 
+                instruction: "Rakan kamu bersin di hadapan makanan yang dihidangkan tanpa menutup mulut. Apakah kesan perbuatan tersebut dan apakah teguran yang sesuai kamu berikan?", 
+                audioText: "Situasi SP 1.1.3: Rakan bersin di hadapan makanan tanpa menutup mulut.", 
+                answer: "Bersin tanpa menutup mulut boleh menyebabkan makanan dicemari kuman. Saya akan menegurnya dengan sopan, “Kawan, tutuplah mulut ketika bersin supaya makanan tidak dicemari kuman.”", 
+                keywords: ["bersin tanpa tutup mulut", "makanan dicemari kuman", "teguran sopan"] 
             },
             { 
                 id: 5, 
-                title: "Soalan 5: Etika Beratur & Keselamatan Cecair Panas", 
+                title: "Soalan 5: Penggunaan Sudu Penyepit", 
                 audioFile: "soalan5.mp3", 
                 imageFile: "gambar5.jpg", 
-                instruction: "Mengapakah tindakan berlari-lari sambil membawa makanan atau sup panas di kantin sekolah sangat berbahaya dari sudut keselamatan dan kebersihan?", 
-                audioText: "Soalan KBAT: Bahaya berlari sambil membawa makanan atau sup panas di kantin.", 
-                answer: "Tindakan itu boleh menyebabkan makanan panas tumpah, melecurkan kulit rakan, dan mengotorkan lantai kantin sehingga licin.", 
-                keywords: ["makanan tumpah", "melecurkan kulit", "mengotorkan lantai", "licin"] 
+                instruction: "Rakan kamu mengambil makanan menggunakan tangan walaupun sudu penyepit disediakan. Mengapakah tindakan itu kurang sesuai dan apakah nasihat kamu?", 
+                audioText: "Situasi SP 1.1.3: Rakan mengambil makanan berhidang menggunakan tangan secara terus.", 
+                answer: "Tangan yang tidak bersih boleh mencemarkan makanan. Saya akan berkata, “Kawan, marilah kita menggunakan sudu penyepit supaya makanan kekal bersih dan selamat dimakan.”", 
+                keywords: ["makanan berhidang", "sudu penyepit", "kekal bersih", "selamat dimakan"] 
             },
             { 
                 id: 6, 
-                title: "Soalan 6: Integriti Kebersihan Meja Makan", 
+                title: "Soalan 6: Sisa Makanan di Atas Meja", 
                 audioFile: "soalan6.mp3", 
                 imageFile: "gambar6.jpg", 
-                instruction: "Selepas selesai makan di kantin, kamu mendapati terdapat sisa kuah yang tumpah di atas meja. Mengapakah kamu bertanggungjawab mengelapnya walaupun itu bukan tumpahan kamu?", 
-                audioText: "Situasi: Terdapat sisa kuah tumpah di atas meja kantin yang bukan disebabkan oleh kamu.", 
-                answer: "Kerana menjaga kebersihan kantin ialah tanggungjawab bersama supaya meja sentiasa bersih, selesa, dan bebas kuman untuk pengguna seterusnya.", 
-                keywords: ["tanggungjawab bersama", "bersih dan selesa", "bebas kuman"] 
+                instruction: "Rakan kamu meninggalkan sisa makanan di atas meja selepas makan. Apakah kesannya dan bagaimanakah kamu menegurnya dengan sopan?", 
+                audioText: "Situasi SP 1.1.3: Rakan meninggalkan sisa makanan di atas meja kantin selepas makan.", 
+                answer: "Sisa makanan boleh menyebabkan meja kotor dan menarik perhatian lalat. Saya akan berkata, “Kawan, marilah kita membuang sisa makanan ke dalam tong sampah supaya kantin sentiasa bersih.”", 
+                keywords: ["sisa makanan meja", "tarik lalat", "buang dalam tong sampah", "kantin bersih"] 
             },
             { 
                 id: 7, 
-                title: "Soalan 7: Penyemakan Tarikh Luput Makanan", 
+                title: "Soalan 7: Tarikh Luput Makanan", 
                 audioFile: "soalan7.mp3", 
                 imageFile: "gambar7.jpg", 
-                instruction: "Mengapakah e-Buku menekankan supaya murid sentiasa menyemak tarikh luput pada pembungkus makanan di kantin sebelum memakannya?", 
-                audioText: "Soalan KBAT: Kepentingan menyemak tarikh luput pembungkus makanan.", 
-                answer: "Untuk memastikan makanan itu masih segar dan selamat dimakan supaya kita tidak terkena keracunan makanan.", 
-                keywords: ["makanan segar", "selamat dimakan", "elak keracunan makanan"] 
+                instruction: "Mengapakah kita perlu menyemak tarikh luput makanan sebelum memakannya? Jelaskan alasan kamu.", 
+                audioText: "Soalan Kritis SP 1.1.3: Kepentingan menyemak tarikh luput pembungkus makanan.", 
+                answer: "Kita perlu menyemak tarikh luput untuk memastikan makanan masih dalam tempoh yang disarankan untuk dimakan. Saya akan mengelakkan makanan yang telah tamat tempoh demi menjaga kesihatan.", 
+                keywords: ["tarikh luput", "tempoh disarankan", "elak makanan tamat tempoh", "jaga kesihatan"] 
             },
             { 
                 id: 8, 
-                title: "Soalan 8: Kebersihan Tangan Sebelum & Selepas Makan", 
+                title: "Soalan 8: Membasuh Tangan dengan Sabun", 
                 audioFile: "soalan8.mp3", 
                 imageFile: "gambar8.jpg", 
-                instruction: "Mengapakah mencuci tangan menggunakan sabun di singki kantin lebih berkesan berbanding hanya mengelap tangan dengan tisu sebelum makan?", 
-                audioText: "Soalan KBAT: Kelebihan cuci tangan dengan sabun berbanding mengelap dengan tisu.", 
-                answer: "Mencuci tangan dengan sabun dan air mengalir dapat membunuh kuman dan membuang minyak pada tangan secara berkesan.", 
-                keywords: ["sabun & air mengalir", "membunuh kuman", "membuang minyak"] 
+                instruction: "Rakan kamu hanya membilas tangan dengan air sebelum makan. Adakah tindakan itu mencukupi? Mengapa?", 
+                audioText: "Soalan Kritis SP 1.1.3: Membilas tangan dengan air sahaja berbanding guna sabun.", 
+                answer: "Membilas tangan dengan air sahaja mungkin tidak dapat menanggalkan kotoran dan kuman dengan berkesan. Kita perlu membasuh tangan menggunakan sabun dan air mengalir sebelum makan.", 
+                keywords: ["bilas air sahaja", "tidak tanggalkan kuman", "sabun & air mengalir"] 
             },
             { 
                 id: 9, 
-                title: "Soalan 9: Pengurangan Penggunaan Plastik Sekali Guna", 
+                title: "Soalan 9: Membawa Bekas Makanan Sendiri", 
                 audioFile: "soalan9.mp3", 
                 imageFile: "gambar9.jpg", 
-                instruction: "Bagaimanakah amalan membawa bekas makanan sendiri dari rumah dapat menyokong kempen Kebersihan dan Kesihatan Kantin Sekolah?", 
-                audioText: "Soalan KBAT: Kebaikan membawa bekas makanan sendiri ke kantin sekolah.", 
-                answer: "Membawa bekas sendiri mengurangkan sampah plastik di kantin dan memastikan kebersihan makanan lebih terjamin.", 
-                keywords: ["mengurangkan sampah plastik", "kebersihan makanan terjamin"] 
+                instruction: "Bagaimanakah amalan membawa bekas makanan sendiri yang bersih dapat membantu menjaga kebersihan kantin?", 
+                audioText: "Soalan Kritis SP 1.1.3: Kebaikan membawa bekas makanan sendiri dari rumah.", 
+                answer: "Bekas makanan sendiri dapat mengurangkan penggunaan bekas plastik sekali guna. Jika dibersihkan dengan betul, bekas tersebut juga dapat membantu menjaga kebersihan makanan.", 
+                keywords: ["bekas sendiri", "kurangkan plastik sekali guna", "jaga kebersihan makanan"] 
             },
             { 
                 id: 10, 
-                title: "Soalan 10: Peranan Murid Sebagai 'Duta Kebersihan'", 
+                title: "Soalan 10: Duta Kebersihan Kantin", 
                 audioFile: "soalan10.mp3", 
                 imageFile: "gambar10.jpg", 
-                instruction: "Sekiranya kamu dilantik sebagai Pengawas Kantin, apakah cadangan lisan yang paling kritis untuk memastikan semua murid menjaga kebersihan kawasan kantin?", 
-                audioText: "Situasi KBAT: Cadangan anda sebagai Pengawas Kantin untuk kebersihan.", 
-                answer: "Saya mencadangkan pembudayaan amalan 'Susun Pinggan dan Buang Sisa' secara kendiri serta penyediaan tong sampah mengikut kategori sisa.", 
-                keywords: ["Susun Pinggan dan Buang Sisa", "kategori sisa", "amalan kendiri"] 
+                instruction: "Jika kamu menjadi Pengawas Kantin, apakah cadangan kamu untuk memastikan murid menjaga kebersihan kantin? Jelaskan sebabnya.", 
+                audioText: "Situasi KBAT SP 1.1.3: Cadangan Pengawas Kantin bagi memastikan kebersihan kantin dijaga.", 
+                answer: "Saya mencadangkan agar murid membuang sisa makanan ke dalam tong sampah dan menyusun pinggan selepas makan. Amalan ini dapat memupuk sikap bertanggungjawab serta memastikan kantin sentiasa bersih dan selesa.", 
+                keywords: ["buang sisa", "susun pinggan", "sikap bertanggungjawab", "bersih dan selesa"] 
             }
         ];
 
@@ -743,7 +743,6 @@
                 ctx.restore();
             }
 
-            // Pusat Roda
             ctx.beginPath();
             ctx.arc(center, center, 25, 0, 2 * Math.PI);
             ctx.fillStyle = "#FFFFFF";
@@ -768,7 +767,6 @@
         function spinWheel() {
             if (isSpinning) return;
 
-            // Semak jika semua soalan telah selesai
             if (completedQuestions.every(status => status === true)) {
                 showPage('pageComplete');
                 return;
@@ -823,7 +821,6 @@
 
             selectedQuestionIndex = index;
 
-            // Jika soalan ini dah siap, pilih soalan terdekat yang belum siap
             if (completedQuestions[selectedQuestionIndex]) {
                 selectedQuestionIndex = completedQuestions.findIndex(status => status === false);
             }
@@ -842,11 +839,10 @@
         function loadQuestion() {
             const q = questionsList[selectedQuestionIndex];
             
-            document.getElementById('spBadge').innerText = `SOALAN ${q.id}`;
+            document.getElementById('spBadge').innerText = `SP 1.1.3 - SOALAN ${q.id}`;
             document.getElementById('questionImage').src = q.imageFile;
             document.getElementById('questionInstruction').innerText = q.instruction;
 
-            // Kemaskini Progress Dots (1-10)
             const dots = document.querySelectorAll('#progressDots .dot');
             dots.forEach((dot, idx) => {
                 dot.className = 'dot';
@@ -892,10 +888,9 @@
             const feedbackEl = document.getElementById('evalFeedback');
             if (type === 'correct') {
                 feedbackEl.style.color = "var(--green)";
-                feedbackEl.innerText = "Syabas! Jawapan murid sesuai, kritis, dan tepat.";
+                feedbackEl.innerText = "Syabas! Jawapan murid sangat kritis, bernas, dan tepat.";
                 document.getElementById('nextBtn').style.display = 'inline-block';
                 
-                // Tandakan soalan ini telah selesai
                 completedQuestions[selectedQuestionIndex] = true;
 
                 try {
@@ -904,7 +899,7 @@
                 } catch(e) {}
             } else if (type === 'guidance') {
                 feedbackEl.style.color = "var(--accent-hover)";
-                feedbackEl.innerText = "Bagus! Bimbing murid untuk memberikan hujah dan jawapan yang lebih bernas.";
+                feedbackEl.innerText = "Bagus! Bimbing murid untuk memberikan hujah yang lebih kritis dan bernas.";
             } else if (type === 'retry') {
                 feedbackEl.style.color = "var(--red)";
                 feedbackEl.innerText = "Sila berikan peluang kepada murid untuk mencuba lagi.";
