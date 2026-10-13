@@ -496,7 +496,6 @@
             <div class="audio-box">
                 <img id="questionImage" class="question-img" src="" alt="Gambar Soalan">
                 
-                <!-- Kotak Hijau hanya memaparkan arahan supaya murid mendengar audio -->
                 <div id="questionInstruction" class="question-instruction">
                     🎧 Sila tekan butang "DENGAR SOALAN" di bawah dan dengar dengan teliti.
                 </div>
@@ -585,13 +584,13 @@
             } catch(e) {}
         }
 
-        // Senarai 10 Soalan SP 1.1.3 (Soalan Penuh Ditempatkan Dalam 'fullQuestion' Untuk Panduan Guru)
+        // Senarai 10 Soalan SP 1.1.3 (Format Gambar .png)
         const questionsList = [
             { 
                 id: 1, 
                 title: "Soalan 1: Makanan Terdedah", 
                 audioFile: "soalan1.mp3", 
-                imageFile: "gambar1.jpg", 
+                imageFile: "gambar1.png", 
                 fullQuestion: "Mengapakah makanan yang dibiarkan terdedah di kantin berbahaya? Bagaimanakah kamu menasihati penjual tersebut?", 
                 answer: "Makanan terdedah mudah dihinggapi lalat yang membawa kuman dan boleh menyebabkan keracunan makanan. Saya akan berkata, “Mak cik, elok makanan ini ditutup supaya tidak dihinggapi lalat dan selamat dimakan.”", 
                 keywords: ["makanan terdedah", "dihinggapi lalat", "keracunan makanan", "ditutup rapat"] 
@@ -600,7 +599,7 @@
                 id: 2, 
                 title: "Soalan 2: Kebersihan Tangan", 
                 audioFile: "soalan2.mp3", 
-                imageFile: "gambar2.jpg", 
+                imageFile: "gambar2.png", 
                 fullQuestion: "Rakan kamu hendak makan selepas bermain di padang tanpa membasuh tangan. Apakah kesannya dan apakah nasihat kamu?", 
                 answer: "Tangan yang kotor boleh memindahkan kuman kepada makanan dan menyebabkan penyakit. Saya akan berkata, “Kawan, marilah kita membasuh tangan dengan sabun sebelum makan supaya kesihatan kita terjaga.”", 
                 keywords: ["tangan kotor", "pindah kuman", "basuh dengan sabun", "jaga kesihatan"] 
@@ -609,7 +608,7 @@
                 id: 3, 
                 title: "Soalan 3: Pemilihan Makanan Sihat", 
                 audioFile: "soalan3.mp3", 
-                imageFile: "gambar3.jpg", 
+                imageFile: "gambar3.png", 
                 fullQuestion: "Rakan kamu sering memilih makanan berminyak dan minuman manis. Adakah pilihan itu baik untuk kesihatannya? Berikan alasan kamu.", 
                 answer: "Pengambilan makanan berminyak dan minuman manis secara berlebihan boleh meningkatkan risiko obesiti dan kerosakan gigi. Saya mencadangkan supaya rakan saya memilih makanan seimbang dan minum air kosong untuk menjaga kesihatan.", 
                 keywords: ["makanan berminyak", "minuman manis", "obesiti", "kerosakan gigi", "makanan seimbang"] 
@@ -618,7 +617,7 @@
                 id: 4, 
                 title: "Soalan 4: Bersin di Hadapan Makanan", 
                 audioFile: "soalan4.mp3", 
-                imageFile: "gambar4.jpg", 
+                imageFile: "gambar4.png", 
                 fullQuestion: "Rakan kamu bersin di hadapan makanan yang dihidangkan tanpa menutup mulut. Apakah kesan perbuatan tersebut dan apakah teguran yang sesuai kamu berikan?", 
                 answer: "Bersin tanpa menutup mulut boleh menyebabkan makanan dicemari kuman. Saya akan menegurnya dengan sopan, “Kawan, tutuplah mulut ketika bersin supaya makanan tidak dicemari kuman.”", 
                 keywords: ["bersin tanpa tutup mulut", "makanan dicemari kuman", "teguran sopan"] 
@@ -627,7 +626,7 @@
                 id: 5, 
                 title: "Soalan 5: Penggunaan Sudu Penyepit", 
                 audioFile: "soalan5.mp3", 
-                imageFile: "gambar5.jpg", 
+                imageFile: "gambar5.png", 
                 fullQuestion: "Rakan kamu mengambil makanan menggunakan tangan walaupun sudu penyepit disediakan. Mengapakah tindakan itu kurang sesuai dan apakah nasihat kamu?", 
                 answer: "Tangan yang tidak bersih boleh mencemarkan makanan. Saya akan berkata, “Kawan, marilah kita menggunakan sudu penyepit supaya makanan kekal bersih dan selamat dimakan.”", 
                 keywords: ["makanan berhidang", "sudu penyepit", "kekal bersih", "selamat dimakan"] 
@@ -636,7 +635,7 @@
                 id: 6, 
                 title: "Soalan 6: Sisa Makanan di Atas Meja", 
                 audioFile: "soalan6.mp3", 
-                imageFile: "gambar6.jpg", 
+                imageFile: "gambar6.png", 
                 fullQuestion: "Rakan kamu meninggalkan sisa makanan di atas meja selepas makan. Apakah kesannya dan bagaimanakah kamu menegurnya dengan sopan?", 
                 answer: "Sisa makanan boleh menyebabkan meja kotor dan menarik perhatian lalat. Saya akan berkata, “Kawan, marilah kita membuang sisa makanan ke dalam tong sampah supaya kantin sentiasa bersih.”", 
                 keywords: ["sisa makanan meja", "tarik lalat", "buang dalam tong sampah", "kantin bersih"] 
@@ -645,7 +644,7 @@
                 id: 7, 
                 title: "Soalan 7: Tarikh Luput Makanan", 
                 audioFile: "soalan7.mp3", 
-                imageFile: "gambar7.jpg", 
+                imageFile: "gambar7.png", 
                 fullQuestion: "Mengapakah kita perlu menyemak tarikh luput makanan sebelum memakannya? Jelaskan alasan kamu.", 
                 answer: "Kita perlu menyemak tarikh luput untuk memastikan makanan masih dalam tempoh yang disarankan untuk dimakan. Saya akan mengelakkan makanan yang telah tamat tempoh demi menjaga kesihatan.", 
                 keywords: ["tarikh luput", "tempoh disarankan", "elak makanan tamat tempoh", "jaga kesihatan"] 
@@ -654,7 +653,7 @@
                 id: 8, 
                 title: "Soalan 8: Membasuh Tangan dengan Sabun", 
                 audioFile: "soalan8.mp3", 
-                imageFile: "gambar8.jpg", 
+                imageFile: "gambar8.png", 
                 fullQuestion: "Rakan kamu hanya membilas tangan dengan air sebelum makan. Adakah tindakan itu mencukupi? Mengapa?", 
                 answer: "Membilas tangan dengan air sahaja mungkin tidak dapat menanggalkan kotoran dan kuman dengan berkesan. Kita perlu membasuh tangan menggunakan sabun dan air mengalir sebelum makan.", 
                 keywords: ["bilas air sahaja", "tidak tanggalkan kuman", "sabun & air mengalir"] 
@@ -663,7 +662,7 @@
                 id: 9, 
                 title: "Soalan 9: Membawa Bekas Makanan Sendiri", 
                 audioFile: "soalan9.mp3", 
-                imageFile: "gambar9.jpg", 
+                imageFile: "gambar9.png", 
                 fullQuestion: "Bagaimanakah amalan membawa bekas makanan sendiri yang bersih dapat membantu menjaga kebersihan kantin?", 
                 answer: "Bekas makanan sendiri dapat mengurangkan penggunaan bekas plastik sekali guna. Jika dibersihkan dengan betul, bekas tersebut juga dapat membantu menjaga kebersihan makanan.", 
                 keywords: ["bekas sendiri", "kurangkan plastik sekali guna", "jaga kebersihan makanan"] 
@@ -672,7 +671,7 @@
                 id: 10, 
                 title: "Soalan 10: Duta Kebersihan Kantin", 
                 audioFile: "soalan10.mp3", 
-                imageFile: "gambar10.jpg", 
+                imageFile: "gambar10.png", 
                 fullQuestion: "Jika kamu menjadi Pengawas Kantin, apakah cadangan kamu untuk memastikan murid menjaga kebersihan kantin? Jelaskan sebabnya.", 
                 answer: "Saya mencadangkan agar murid membuang sisa makanan ke dalam tong sampah dan menyusun pinggan selepas makan. Amalan ini dapat memupuk sikap bertanggungjawab serta memastikan kantin sentiasa bersih dan selesa.", 
                 keywords: ["buang sisa", "susun pinggan", "sikap bertanggungjawab", "bersih dan selesa"] 
@@ -841,7 +840,6 @@
                 if (idx === selectedQuestionIndex) dot.classList.add('active');
             });
 
-            // Teks soalan penuh diletakkan di dalam Panduan Guru
             document.getElementById('tFullQuestion').innerText = q.fullQuestion;
             document.getElementById('tAnswer').innerText = q.answer;
             
