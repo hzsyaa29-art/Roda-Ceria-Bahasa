@@ -896,8 +896,9 @@
             }
         }
 
+        // PERBAIKAN DI SINI:
         function nextQuestion() {
-            if (completedQuestions.every(status === true)) {
+            if (completedQuestions.every(status => status === true)) {
                 showPage('pageComplete');
             } else {
                 goHome();
